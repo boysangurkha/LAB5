@@ -41,6 +41,25 @@ router.get('/:id', function(req, res, next) {
   );
 });
 
+//post messages
+router.post('/', function(req, res, next) {
+  res.json(
+    {
+      "status": "success",
+      "message": "POST messages",
+      "data": {
+        "messages": [
+          {
+            "user": req.body.user,
+            "text": req.body.text,
+          }
+        ]
+      }
+    }
+  );
+});
+
+
 
 module.exports = router;
 
