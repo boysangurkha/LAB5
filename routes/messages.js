@@ -3,24 +3,33 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json(
-    {
-      "status": "success",
-      "message": "GET messages",
-      "data": {
-        "messages": [
-          {
-            "user": "John",
-            "message": "Hi, I'm Jphn"
-          },
-          {
-            "user": "Jane",
-            "message": "Hi, I'm Jane"
-          } 
-        ]
+  //check if user query 
+  if (req.query.user) {
+    res.json(
+      {
+        "messages": req.query.user,
       }
-    }
-  );
+    )
+  } else {
+    res.json(
+      {
+        "status": "success",
+        "message": "GET messages",
+        "data": {
+          "messages": [
+            {
+              "user": "John",
+              "message": "Hi, I'm Jphn"
+            },
+            {
+              "user": "Jane",
+              "message": "Hi, I'm Jane"
+            } 
+          ]
+        }
+      }
+    );
+  }
 });
 
 //get messages by id
@@ -77,6 +86,24 @@ router.put('/:id', function(req, res, next) {
   );
 });
 
+
+//delete messages by id
+router.delete('/:id', function(req, res, next) {
+  res.json(
+    {
+      "status": "success",
+      "message": "DELETE message of ID name " + req.params.id,
+      "data": {
+        "messages": [
+          {
+            "user": req.body.user,
+            "text": req.body.text,
+          }
+        ]
+      }
+    }
+  );
+});
 
 
 
