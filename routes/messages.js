@@ -59,6 +59,25 @@ router.post('/', function(req, res, next) {
   );
 });
 
+//put messages by id
+router.put('/:id', function(req, res, next) {
+  res.json(
+    {
+      "status": "success",
+      "message": "PUT messages by " + req.params.id,
+      "data": {
+        "messages": [
+          {
+            "user": req.body.user,
+            "text": req.body.text,
+          }
+        ]
+      }
+    }
+  );
+});
+
+
 
 
 module.exports = router;
